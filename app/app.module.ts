@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {AppComponent} from './app.component';
 import {BookComponent} from './book.component';
 import {WebComponent} from './web.component';
+import {OrderListComponent} from './orders/order-list.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import {WebComponent} from './web.component';
   declarations: [
     AppComponent,
     BookComponent,
-    WebComponent
+    WebComponent,
+    OrderListComponent
     
   ],
   bootstrap: [AppComponent
