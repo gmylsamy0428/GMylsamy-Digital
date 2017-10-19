@@ -7,17 +7,27 @@
         <div class = "row">
             <div class = "col-md-2">FilterBy:</div>
             <div class = "col-md-4">
-                <input type="text">
+                <input type="text" [(ngModel)]='listFilter'>
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <h3>FilteredBy:</h3>
+                    <h3>FilteredBy:{{listFilter}}</h3>
                 </div>
             </div>
-
-            <div class="table-responsive">
+            <div class="row">
+                <div class = "col-md-6">
+                    <button class="btn btn-primary" (click)='toggleGridView()'> 
+                        Grid View
+                    </button>
+                    <button class="btn btn-primary" (click)='toggleListView()'> 
+                            List View
+                        </button>
+                </div>
+                
+            </div>
+            <div class="table-responsive" *ngIf='showGridView'>
                 <h3 *ngIf='myHead'>Order is coming soon</h3>
-                <table class="table" *ngIf='orders && orders.length'>
+                <table class="table" *ngIf='orders && orders.length' >
                     <thead>
                         <tr>
                             <button class="btn btn-primary" (click) = 'toggleImage()'>
@@ -34,19 +44,34 @@
                       
                     </thead>
                     <tbody>
-                        <tr *ngFor='let order of orders'>
+                        <tr *ngFor='let order of orders | orderFilter:listFilter'>
                             <td>
                                 <img [src]='order.imageUrl' [style.width.px]='imageWidth' *ngIf='showImages'>
                             </td>
                             <td>{{order.orderId}}</td>
-                            <td>{{order.productName}}</td>
-                            <td>{{order.customerName}}</td>
-                            <td>{{order.price}}</td>
+                            <td>{{order.productName | uppercase}}</td>
+                            <td>{{order.customerName | lowercase}}</td>
+                            <td>{{order.price | currency:'USD':true}}</td>
                             <td>{{order.deliveryDate}}</td>
-                            <td>{{order.starRating}}</td>
+                            <td><ganesh-star [rating]="order.starRating"></ganesh-star></td>
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            <div class="container" *ngIf='showListView'>
+                <h2>List of Orders</h2>
+                <div class="list-group" *ngFor='let order of orders | orderFilter:listFilter'>
+                    <a href="#" class="list-group-item" >
+                        <img [src]='order.imageUrl' [style.width.px]='imageWidth'>
+                    </a>
+                    <a href="#" class="list-group-item" >OrderID:{{order.orderId}}</a>
+                    <a href="#" class="list-group-item" >Product:{{order.productName|uppercase}}</a>
+                    <a href="#" class="list-group-item" >Customer:{{order.customerName|uppercase}}</a>
+                    <a href="#" class="list-group-item" >Price:{{order.price | currency:'USD':true}}</a>
+                    <a href="#" class="list-group-item" >DeliveryDate:{{order.deliveryDate}}</a>
+                    <a href="#" class="list-group-item" >Star Rating:<ganesh-star
+                        [rating]="order.starRating"></ganesh-star></a>
+                </div>    
             </div>
         </div>
     </div>

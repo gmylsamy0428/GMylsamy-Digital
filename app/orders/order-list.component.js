@@ -14,6 +14,8 @@ var OrderListComponent = /** @class */ (function () {
         /*orders:boolean=true;*/
         this.imageWidth = 50;
         this.showImages = false;
+        this.showGridView = false;
+        this.showListView = false;
         this.orders = [
             {
                 "orderId": 1,
@@ -49,6 +51,19 @@ var OrderListComponent = /** @class */ (function () {
     }
     OrderListComponent.prototype.toggleImage = function () {
         this.showImages = !this.showImages;
+    };
+    OrderListComponent.prototype.toggleGridView = function () {
+        this.showGridView = true;
+        this.showListView = false;
+        //this.showListView=this.showListView;
+    };
+    OrderListComponent.prototype.toggleListView = function () {
+        this.showListView = true;
+        this.showGridView = false;
+        //this.showGridView=this.showGridView;
+    };
+    OrderListComponent.prototype.ngOnInit = function () {
+        console.log('<<<<<<<<<<<<<<<<This is init>>>>>>>>>>>>>>>>>>>>');
     };
     OrderListComponent = __decorate([
         core_1.Component({

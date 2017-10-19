@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {IOrder} from './order';
 
 @Component ({
     selector: 'gom-order',
@@ -8,13 +9,16 @@ import {Component} from '@angular/core';
 
 })
 
-export class OrderListComponent{
+export class OrderListComponent implements OnInit{
     pageTitle:string="Order Details"
     myHead:boolean=true;
     /*orders:boolean=true;*/
     imageWidth:number=50;
     showImages:boolean=false;
-    orders:any[]=[
+    showGridView:boolean=false;
+    showListView:boolean=false;
+    listFilter:string;
+    orders:IOrder[]=[
         {
             "orderId": 1,
             "productName": "Leaf Rake",
@@ -48,5 +52,18 @@ export class OrderListComponent{
     ]
     toggleImage():void{
         this.showImages = !this.showImages;
+    }
+    toggleGridView():void{
+        this.showGridView=true;
+        this.showListView=false;
+        //this.showListView=this.showListView;
+    }
+    toggleListView():void{
+        this.showListView=true;
+        this.showGridView=false;
+        //this.showGridView=this.showGridView;
+    }
+    ngOnInit():void{
+        console.log('<<<<<<<<<<<<<<<<This is init>>>>>>>>>>>>>>>>>>>>')
     }
 }

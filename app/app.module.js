@@ -8,10 +8,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
+var forms_1 = require("@angular/forms");
 var app_component_1 = require("./app.component");
 var book_component_1 = require("./book.component");
 var web_component_1 = require("./web.component");
 var order_list_component_1 = require("./orders/order-list.component");
+var order_filter_pipe_1 = require("./orders/order-filter.pipe");
+var star_component_1 = require("./shared/star.component");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -19,12 +22,15 @@ var AppModule = /** @class */ (function () {
         core_1.NgModule({
             imports: [
                 platform_browser_1.BrowserModule,
+                forms_1.FormsModule
             ],
             declarations: [
                 app_component_1.AppComponent,
                 book_component_1.BookComponent,
                 web_component_1.WebComponent,
-                order_list_component_1.OrderListComponent
+                order_list_component_1.OrderListComponent,
+                order_filter_pipe_1.OrderFilterPipe,
+                star_component_1.StarComponent
             ],
             bootstrap: [app_component_1.AppComponent
             ]
